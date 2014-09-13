@@ -1,6 +1,8 @@
-package ch.klandolt.regkasse.kasse;
+package ch.klandolt.regkasse.buissness.kasse;
 
 import java.math.BigDecimal;
+
+import ch.klandolt.regkasse.buissness.geld.Muenze;
 
 /**
  * Klasse für die Kassen Funktionen
@@ -96,6 +98,16 @@ public class kasse {
 		return bigdecRetourgeld.setScale(2).doubleValue();
 	}
 	
+	
+	public double zahlungerfassen(Muenze muenze)
+	{
+		
+		double betrag = muenze.getWert().doubleValue();
+		
+		double rueckgeld = zahlungerfassen(betrag);
+		
+		return rueckgeld;
+	}
 	
 	
 	

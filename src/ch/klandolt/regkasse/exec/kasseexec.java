@@ -1,9 +1,17 @@
 package ch.klandolt.regkasse.exec;
-import ch.klandolt.regkasse.kasse.kasse;
+
+import ch.klandolt.regkasse.buissness.geld.Muenze;
+import ch.klandolt.regkasse.buissness.kasse.kasse;
 
 public class kasseexec {
 
 	public static void main(String[] args) {
+		
+		//Geld erstellen
+		Muenze einfraenkler = new Muenze(1.0, "Einfraenkler");
+		Muenze zweifraenkler = new Muenze(2.0, "Zweifraenkler");
+		Muenze fuenffraenkler = new Muenze(5.0, "Fuenffraenkler");
+		
 		
 		
 		
@@ -11,20 +19,22 @@ public class kasseexec {
 		System.out.println("Aktueller Kassenstand: " + migrokasse.getKassenstand());
 		
 		migrokasse.betragerfassen(2.50);
-		migrokasse.betragerfassen(1.20);
-		migrokasse.betragerfassen(2.30);
-		migrokasse.betragerfassen(34.30);
-		migrokasse.betragerfassen(20);
+		
+		System.out.println("Aktueller Total: " + migrokasse.getTotal());
+		
+		double rueckgeld = migrokasse.zahlungerfassen(fuenffraenkler);
+		
+		System.out.println("Rückgeld: " + rueckgeld);
 
 		System.out.println("Aktueller Kassenstand: " + migrokasse.getKassenstand());
-		System.out.println("Aktueller Total: " + migrokasse.getTotal());
+		
 		
 		
 		//Bezahlen
 		
-		System.out.println("Rueckgeld: " + migrokasse.zahlungerfassen(100));
+		//System.out.println("Rueckgeld: " + migrokasse.zahlungerfassen(100));
 		
-		System.out.println("Aktueller Kassenstand: " + migrokasse.getKassenstand());
+		//System.out.println("Aktueller Kassenstand: " + migrokasse.getKassenstand());
 		
 
 

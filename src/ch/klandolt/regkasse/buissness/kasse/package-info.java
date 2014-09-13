@@ -5,4 +5,4 @@
  * @author kevin.landolt
  *
  */
-package ch.klandolt.regkasse.kasse;
+package ch.klandolt.regkasse.buissness.kasse;

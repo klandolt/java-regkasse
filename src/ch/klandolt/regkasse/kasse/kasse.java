@@ -1,5 +1,7 @@
 package ch.klandolt.regkasse.kasse;
 
+import java.math.BigDecimal;
+
 /**
  * Klasse für die Kassen Funktionen
  * 
@@ -8,9 +10,12 @@ package ch.klandolt.regkasse.kasse;
 public class kasse {
 
 	//Attribute
-	private double kassenstand;
-	private double total;
-	private double retourgeld;
+		
+	private BigDecimal bigdecKassenstand;
+	private BigDecimal bigdecTotal;
+	private BigDecimal bigdecRetourgeld;
+	
+	
 	
 	/**
 	 * default Constructor Kassenstand auf 0 setzen
@@ -18,9 +23,10 @@ public class kasse {
 	 */
 	public kasse()
 	{
-		kassenstand = 0;
-		total = 0;
-		retourgeld = 0;
+		bigdecKassenstand = BigDecimal.ZERO;
+		bigdecTotal = BigDecimal.ZERO;
+		bigdecRetourgeld = BigDecimal.ZERO;
+		
 	}
 	
 	/**
@@ -29,22 +35,25 @@ public class kasse {
 	 */
 	public kasse(double inhalt)
 	{
-		kassenstand = inhalt;
-		total = 0;
-		retourgeld = 0;
+		bigdecKassenstand = BigDecimal.valueOf(inhalt);
+		bigdecTotal = BigDecimal.ZERO;
+		bigdecRetourgeld = BigDecimal.ZERO;
+		
 	}
 
 	/**
 	 * Abfragen des Kassenstands
 	 * @return Stand Geldbetrag in der Kasse als Double
 	 */
-	public double getKassenstand() {
-		return kassenstand;
+	public double getKassenstand() 
+	{
+		return bigdecKassenstand.setScale(2).doubleValue();
 	}
 	
 	public void betragerfassen(double betrag)
 	{
-		total = total + betrag;
+		
+		bigdecTotal = BigDecimal.valueOf(bigdecTotal.doubleValue() + betrag);
 		
 	}
 
@@ -53,8 +62,10 @@ public class kasse {
 	 * @return total als double Wert
 	 */
 	
-	public double getTotal() {
-		return total;
+	public double getTotal() 
+	{
+		
+		return bigdecTotal.setScale(2).doubleValue();
 	}
 	
 	/**
@@ -65,21 +76,24 @@ public class kasse {
 	public double zahlungerfassen(double betrag)
 	{
 		
-		if(betrag > total)
+		if(betrag > bigdecTotal.doubleValue())
 		{
-			retourgeld = betrag - total;
-			kassenstand = kassenstand + total;
-		}else if (betrag == total) {
-			retourgeld = 0;
-			kassenstand = kassenstand + total;
+			bigdecRetourgeld = BigDecimal.valueOf(betrag - bigdecTotal.doubleValue()); 
+			
+			//bigdecKassenstand.add(bigdecTotal);
+			bigdecKassenstand = bigdecKassenstand.add(bigdecTotal);
+			
+		}else if (betrag == bigdecTotal.doubleValue()) {
+			bigdecRetourgeld = BigDecimal.ZERO;
+			bigdecKassenstand = bigdecKassenstand.add(bigdecTotal);
+			
 		}else {
-			retourgeld = betrag - total;
+			bigdecRetourgeld = BigDecimal.valueOf(betrag - bigdecTotal.doubleValue());
 			//TODO: Bessere Lösung für zuwenig bezahlen
 		}
 		
-		
-		
-		return retourgeld;
+				
+		return bigdecRetourgeld.setScale(2).doubleValue();
 	}
 	
 	

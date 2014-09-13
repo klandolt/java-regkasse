@@ -16,7 +16,7 @@ public class testregkasse extends TestCase {
 		
 		double total = migroskasse.getTotal();
 		
-		System.out.println(total);
+		//System.out.println(total);
 		
 		assertEquals("Falscher Betrage zusammen Rechnung", 100.0, total);
 	}
@@ -34,7 +34,7 @@ public class testregkasse extends TestCase {
 		
 		double rueckgeld = migroskasse.zahlungerfassen(100);
 		
-		System.out.println(rueckgeld);
+		//System.out.println(rueckgeld);
 		
 		assertEquals("Falscher Betrage zusammen Rechnung", 20.0, rueckgeld);
 	}
@@ -47,11 +47,12 @@ public class testregkasse extends TestCase {
 		
 		
 		
-		migroskasse.zahlungerfassen(100);
+		double retourgeld = migroskasse.zahlungerfassen(50);
 		
 		double kassenstand = migroskasse.getKassenstand();
 		
 		System.out.println(kassenstand);
+		System.out.println(retourgeld);
 		
 		assertEquals("Falscher Betrage zusammen Rechnung", 140.0, kassenstand);
 	}

@@ -53,8 +53,8 @@ public class testregkasse extends TestCase {
 		assertEquals("Falscher Betrage zusammen Rechnung", 140.0, kassenstand);
 	}
 
-	public void testeinkaufmuenz() { // Test Methoden müssen mit test
-										// beginnen!!!
+	public void testeinkaufmuenz() { // Test Methoden müssen mit test beginnen!!!
+		
 		// Geld erstellen
 		Muenze einfraenkler = new Muenze(1.0, "Einfraenkler");
 		Muenze zweifraenkler = new Muenze(2.0, "Zweifraenkler");
